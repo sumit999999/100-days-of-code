@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int twoCitySchedCost(vector<vector<int>>& costs) {
+        priority_queue<pair<int,vector<int>>> pq;
+        for(auto it:costs){
+            pq.push({abs(it[0]-it[1]),it});
+        }
+        int n=costs.size();
+        int ans=0 ,cnt1=n/2 ,cnt2=n/2;
+        while(!pq.empty()){
+            auto it=pq.top().second;
+            pq.pop();
+            int a=it[0] ,b=it[1];
+            if(a>b){
+                if(cnt2>0) ans+=b , cnt2--;
+                else ans+=a ,cnt1--;
+            }else{
+                if(cnt1>0) ans+=a ,cnt1--;
+                else ans+=b , cnt2--;
+            }
+        }
+        return ans;
+    }
+};
