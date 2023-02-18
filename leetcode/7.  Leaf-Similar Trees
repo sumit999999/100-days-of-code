@@ -1,0 +1,17 @@
+class Solution {
+public:
+    
+    void fx(TreeNode* root,string &s){
+        if(!root) return ;
+        if(!root->left&&!root->right) s+=to_string(root->val)+'#';
+        fx(root->left,s);
+        fx(root->right,s);
+    }
+    
+    bool leafSimilar(TreeNode* root1, TreeNode* root2) {
+        string s1,s2;
+        fx(root1,s1);
+        fx(root2,s2);
+        return s1==s2;
+    }
+};
